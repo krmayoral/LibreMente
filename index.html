@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibreMente - Tu espacio de bienestar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="setup-view" class="container active">
+        <div class="card setup-card">
+            <div class="logo-icon"><i class="fa-solid fa-leaf"></i></div>
+            <h1 id="setup-title">Bienvenido a LibreMente</h1>
+            <p id="setup-subtitle">El primer paso requiere valor. Selecciona el objetivo en el que deseas trabajar:</p>
+            
+            <div class="habit-options">
+                <label class="habit-checkbox">
+                    <input type="checkbox" id="chk-fumar" value="fumar">
+                    <span class="checkbox-box"><i class="fa-solid fa-smoking-ban"></i></span>
+                    <span class="checkbox-label">Dejar de fumar</span>
+                </label>
+                <label class="habit-checkbox">
+                    <input type="checkbox" id="chk-beber" value="beber">
+                    <span class="checkbox-box"><i class="fa-solid fa-wine-bottle"></i></span>
+                    <span class="checkbox-label">Dejar de beber</span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="input-proposito"><i class="fa-solid fa-heart" style="color: #e11d48;"></i> ¿Cuál es tu mayor propósito o motivo?</label>
+                <textarea id="input-proposito" rows="3" placeholder="Ej. Por mi salud, por mi familia, para recuperar mi tranquilidad..."></textarea>
+            </div>
+
+            <button id="btn-comenzar" class="btn-primary">Guardar y continuar <i class="fa-solid fa-arrow-right"></i></button>
+            <button id="btn-cancelar-setup" class="btn-secondary" style="margin-top: 12px; display: none;" onclick="cerrarConfiguracion()">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="dashboard-view" class="container">
+        
+        <nav class="app-nav">
+            <div class="nav-brand"><i class="fa-solid fa-seedling" style="color: #34d399;"></i> LibreMente</div>
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="cambiarPestaña('progreso')"><i class="fa-solid fa-chart-line"></i> Progreso</button>
+                <button class="nav-tab" onclick="cambiarPestaña('foro')"><i class="fa-solid fa-comments"></i> Comunidad</button>
+            </div>
+            <div class="nav-actions">
+                <button id="btn-reiniciar" class="btn-icon-action" title="Configurar hábitos y propósito"><i class="fa-solid fa-gear"></i></button>
+                <button id="btn-borrar-todo" class="btn-icon-action text-danger" title="Borrar todo y reiniciar de cero"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+        </nav>
+
+        <div id="tab-progreso" class="tab-content active">
+            <div class="header-status">
+                <span id="active-habits-badge" class="badge">Hábito activo</span>
+            </div>
+
+            <div class="counters-grid" id="counters-container"></div>
+
+            <div id="calendars-container"></div>
+
+            <div class="card purpose-card">
+                <h3><i class="fa-solid fa-compass" style="color: #059669;"></i> Mi propósito principal</h3>
+                <p id="display-proposito">Cargando propósito...</p>
+            </div>
+
+            <div class="card journal-card">
+                <h3><i class="fa-solid fa-book-open" style="color: #059669;"></i> Registro diario de hoy</h3>
+                <p class="card-subtitle">¿Cómo te sentiste hoy? Deja tu nota o comentario para el recuerdo:</p>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <textarea id="input-diario" rows="2" placeholder="Ej. Hoy fue un día tranquilo, me ayudó mucho salir a caminar..."></textarea>
+                </div>
+                <button id="btn-guardar-diario" class="btn-secondary"><i class="fa-solid fa-floppy-disk"></i> Guardar nota</button>
+                <div id="historial-notas" style="margin-top: 15px;"></div>
+            </div>
+
+            <div id="goals-sections-container"></div>
+        </div>
+
+        <div id="tab-foro" class="tab-content">
+            <div class="card">
+                <h3><i class="fa-solid fa-users" style="color: #059669;"></i> Foro de apoyo y experiencias</h3>
+                <p class="card-subtitle">Comparte un consejo, una reflexión o tu experiencia en este camino.</p>
+                
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="input-foro-nombre">Tu nombre o anónimo:</label>
+                    <input type="text" id="input-foro-nombre" placeholder="Ej. Kristian M. o anónimo" style="margin-bottom: 12px;">
+                    
+                    <label for="input-foro-mensaje">Tu experiencia o mensaje de aliento:</label>
+                    <textarea id="input-foro-mensaje" rows="3" placeholder="Escribe aquí tu consejo o cómo superaste el día de hoy..."></textarea>
+                </div>
+                <button id="btn-publicar-foro" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Publicar en la comunidad</button>
+            </div>
+
+            <div id="foro-mural"></div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
